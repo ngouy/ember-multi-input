@@ -65,7 +65,7 @@ define('dummy/ember-multi-input/tests/modules/ember-multi-input/components/multi
   QUnit.module('JSHint | modules/ember-multi-input/components/multi-input.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-multi-input/components/multi-input.js should pass jshint.\nmodules/ember-multi-input/components/multi-input.js: line 49, col 54, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 52, col 58, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 53, col 11, Line breaking error \'break\'.\nmodules/ember-multi-input/components/multi-input.js: line 53, col 16, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 55, col 41, Missing semicolon.\n\n5 errors');
+    assert.ok(false, 'modules/ember-multi-input/components/multi-input.js should pass jshint.\nmodules/ember-multi-input/components/multi-input.js: line 65, col 54, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 68, col 58, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 69, col 11, Line breaking error \'break\'.\nmodules/ember-multi-input/components/multi-input.js: line 69, col 16, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 71, col 41, Missing semicolon.\n\n5 errors');
   });
 });
 define('dummy/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pluralize'], function (exports, _emberInflectorLibHelpersPluralize) {

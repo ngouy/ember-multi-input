@@ -6,7 +6,7 @@ const { computed, computed: { alias, empty }, observer, set, A, Component } = Em
 export default Component.extend({
 
   classNames: ['multi-input'],
-  classNameBindings: ['emptyGroup:empty'],
+  classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
   layout,
   validation:            false,
@@ -31,8 +31,24 @@ export default Component.extend({
 
   i18nObserver: observer('i18n.locale', function() {
     this.get('i18n.locale');
-    this.get('errors').each(error => set(error, 'full_message', this._get_message_error(error.label)));
+    const error = this.get('error');
+    set(error, 'full_message', this._get_message_error(error.label));
   }),
+
+  /* observes the input value and display error if there is one */
+  inputObserver: observer('error.value', '_current_input', function() {
+    const current_input = this.get('current_input');
+    if (current_input === "" || !current_input) {
+      this.set('error', null);
+    }
+    const error_value = this.get('error.value');
+    if (error_value) {
+      this.set('_live_error', error_value === current_input);
+    } else {
+      this.set('_live_error', false);
+    }
+  }),
+
 
   _get_message_error(label) {
     const error_path = this.get('errorPath'),
@@ -60,7 +76,7 @@ export default Component.extend({
   },
 
   _display_error(label, value) {
-    this.set('display_error', true);
+    this.set('_live_error', true);
     const full_message = this._get_message_error(label);
     this.set('error', {
       label,

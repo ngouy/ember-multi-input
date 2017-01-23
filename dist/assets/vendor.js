@@ -86899,7 +86899,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
   exports['default'] = Component.extend({
 
     classNames: ['multi-input'],
-    classNameBindings: ['emptyGroup:empty'],
+    classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
     layout: _emberMultiInputTemplatesComponentsMultiInput['default'],
     validation: false,
@@ -86923,12 +86923,23 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     }),
 
     i18nObserver: observer('i18n.locale', function () {
-      var _this = this;
-
       this.get('i18n.locale');
-      this.get('errors').each(function (error) {
-        return set(error, 'full_message', _this._get_message_error(error.label));
-      });
+      var error = this.get('error');
+      set(error, 'full_message', this._get_message_error(error.label));
+    }),
+
+    /* observes the input value and display error if there is one */
+    inputObserver: observer('error.value', '_current_input', function () {
+      var current_input = this.get('current_input');
+      if (current_input === "" || !current_input) {
+        this.set('error', null);
+      }
+      var error_value = this.get('error.value');
+      if (error_value) {
+        this.set('_live_error', error_value === current_input);
+      } else {
+        this.set('_live_error', false);
+      }
     }),
 
     _get_message_error: function _get_message_error(label) {
@@ -86957,7 +86968,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     },
 
     _display_error: function _display_error(label, value) {
-      this.set('display_error', true);
+      this.set('_live_error', true);
       var full_message = this._get_message_error(label);
       this.set('error', {
         label: label,
@@ -86979,7 +86990,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     },
 
     _try_set_new_inputs: function _try_set_new_inputs() {
-      var _this2 = this;
+      var _this = this;
 
       var fromPaste = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
 
@@ -86988,13 +86999,13 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
         return;
       }
       var errors = values.map(function (input) {
-        if (_this2.get('mustValidate') && _this2.get('validation')(input) || _this2.get('uniqness') && (_this2.get('inputs') || []).includes(input)) {
+        if (_this.get('mustValidate') && _this.get('validation')(input) || _this.get('uniqness') && (_this.get('inputs') || []).includes(input)) {
           return input;
         } else {
-          if (!_this2.get('inputs')) {
-            _this2.set('inputs', A([input]));
+          if (!_this.get('inputs')) {
+            _this.set('inputs', A([input]));
           } else {
-            _this2.get('inputs').pushObject(input);
+            _this.get('inputs').pushObject(input);
           }
           return null;
         }
