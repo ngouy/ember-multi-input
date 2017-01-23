@@ -123,6 +123,16 @@ export default Component.extend({
     }
   },
 
+  _edit_input(id) {
+    if (id) {
+      const to_remove = this.get('inputs').findBy('id', id);
+      if (to_remove) {
+        this._set_input_value(to_remove.value);
+        this.send('deleteInput', to_remove.id);
+      }
+    }
+  },
+
   actions: {
     onInput(onInputEvent) {
       const prev_length = this.get('_prev_serach_length');
@@ -149,12 +159,14 @@ export default Component.extend({
         return false;
       }
       if (event.keyCode === 8 && ((this.get('_current_input.length') || 0) === 0)) {
-        let to_remove = this.get('inputs.lastObject');
-        if (to_remove) {
-          this._set_input_value(to_remove.value);
-          this.send('deleteInput', to_remove.id);
-        }
+        this._edit_input(this.get('inputs.lastObject.id'));
       }
     },
+
+    editInput(id) {
+      this._edit_input(id);
+      this.$('input')[0].focus();
+    },
+
   },
 });

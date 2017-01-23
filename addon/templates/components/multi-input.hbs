@@ -2,7 +2,7 @@
   {{#if renderComponent}}
     {{component renderComponent input.value index}}
   {{else}}
-    <div class='input-value'>
+    <div class='input-value' {{action 'editInput' input.id}}>
       {{#if canDeleteInput}}
         <span class='delete-input' {{action 'deleteInput' input.id}}>×</span>
       {{/if}}
