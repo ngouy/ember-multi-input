@@ -144,9 +144,16 @@ export default Component.extend({
     },
 
     onKeydown(event) {
-      if (event.keyCode === 13 || event.keyCode === 32) {
+      if ((this.get('onSpace') && event.keyCode === 13) || (this.get('onEnter') && event.keyCode === 32)) {
         this._try_set_new_inputs();
         return false;
+      }
+      if (event.keyCode === 8 && ((this.get('_current_input.length') || 0) === 0)) {
+        let to_remove = this.get('inputs.lastObject');
+        if (to_remove) {
+          this._set_input_value(to_remove.value);
+          this.send('deleteInput', to_remove.id);
+        }
       }
     },
   },

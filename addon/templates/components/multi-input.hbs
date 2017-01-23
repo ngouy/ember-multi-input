@@ -1,4 +1,4 @@
-<div class='inputs-group'>{{#each inputs as |input index|}}
+{{#each inputs as |input index|}}
   {{#if renderComponent}}
     {{component renderComponent input.value index}}
   {{else}}
@@ -10,7 +10,6 @@
     </div>
   {{/if}}
 {{/each}}
-</div>
 <div class='input-wrapper'>
    <input type={{type}} autocomplete="off"
       autocorrect="off" autocapitalize="off"
