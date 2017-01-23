@@ -22,4 +22,16 @@
     input { -webkit-appearance:none; }
     display: inline-block;
   }
+  .error-message {
+    padding-top: 5px;
+    font-size: 12px;
+    padding-left: 15px;
+    color: #959595;
+    font-style: italic;
+    transition: all .5s;
+    &.live-error {
+      color: #f41b1b;
+      transition: all .5s;
+    }
+  }
 }

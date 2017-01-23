@@ -23,7 +23,7 @@
       onkeydown={{action 'onKeydown'}} >
 </div>
 {{#if _error.full_message}}
-  <div class='error-message'>
+  <div class='error-message {{if _live_error 'live-error' 'min-error'}}'>
     {{_error.full_message}}
   </div>
 {{/if}}
