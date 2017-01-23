@@ -86888,13 +86888,18 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
   'use strict';
 
   var computed = _ember['default'].computed;
-  var alias = _ember['default'].computed.alias;
+  var _Ember$computed = _ember['default'].computed;
+  var alias = _Ember$computed.alias;
+  var empty = _Ember$computed.empty;
   var observer = _ember['default'].observer;
   var set = _ember['default'].set;
   var A = _ember['default'].A;
   var Component = _ember['default'].Component;
 
   exports['default'] = Component.extend({
+
+    classNames: ['multi-input'],
+    classNameBindings: ['emptyGroup:empty'],
 
     layout: _emberMultiInputTemplatesComponentsMultiInput['default'],
     validation: false,
@@ -86911,15 +86916,16 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     _current_input: '',
     _prev_serach_length: alias('_current_input.length'),
     _inputsNumber: alias('inputs.length'),
+    emptyGroup: empty('inputs'),
 
     inputPlaceholder: computed('placeholder', 'alwaysShowPlaceholder', function () {
       return this.get('alwaysShowPlaceholder') ? this.get('placeholder') : this.get('_inputsNumber') === 0 ? this.get('placeholder') : '';
     }),
 
-    i18nObserver: observer('i18n', function () {
+    i18nObserver: observer('i18n.locale', function () {
       var _this = this;
 
-      this.get('i18n');
+      this.get('i18n.locale');
       this.get('errors').each(function (error) {
         return set(error, 'full_message', _this._get_message_error(error.label));
       });
@@ -87121,16 +87127,13 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
       })();
       return {
         meta: {
-          "fragmentReason": {
-            "name": "missing-wrapper",
-            "problems": ["wrong-type"]
-          },
+          "fragmentReason": false,
           "revision": "Ember@2.5.1",
           "loc": {
             "source": null,
             "start": {
               "line": 1,
-              "column": 0
+              "column": 26
             },
             "end": {
               "line": 7,
@@ -87145,14 +87148,15 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
           var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           dom.insertBoundary(fragment, null);
           return morphs;
         },
@@ -87165,7 +87169,7 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["wrong-type", "multiple-nodes"]
+          "problems": ["multiple-nodes"]
         },
         "revision": "Ember@2.5.1",
         "loc": {
@@ -87175,7 +87179,7 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
             "column": 0
           },
           "end": {
-            "line": 21,
+            "line": 22,
             "column": 6
           }
         },
@@ -87187,7 +87191,12 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "inputs-group");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "input-wrapper");
@@ -87217,10 +87226,10 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [1, 1]);
-        var element1 = dom.childAt(fragment, [3]);
+        var element0 = dom.childAt(fragment, [2, 1]);
+        var element1 = dom.childAt(fragment, [4]);
         var morphs = new Array(9);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createAttrMorph(element0, 'type');
         morphs[2] = dom.createAttrMorph(element0, 'value');
         morphs[3] = dom.createAttrMorph(element0, 'placeholder');
@@ -87229,10 +87238,9 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         morphs[6] = dom.createAttrMorph(element0, 'onkeydown');
         morphs[7] = dom.createAttrMorph(element1, 'class');
         morphs[8] = dom.createMorphAt(element1, 1, 1);
-        dom.insertBoundary(fragment, 0);
         return morphs;
       },
-      statements: [["block", "each", [["get", "inputs", ["loc", [null, [1, 8], [1, 14]]]]], [], 0, null, ["loc", [null, [1, 0], [7, 9]]]], ["attribute", "type", ["get", "type", ["loc", [null, [9, 17], [9, 21]]]]], ["attribute", "value", ["get", "currentInput", ["loc", [null, [13, 14], [13, 26]]]]], ["attribute", "placeholder", ["get", "inputPlaceholder", ["loc", [null, [14, 20], [14, 36]]]]], ["attribute", "oninput", ["subexpr", "action", ["onInput"], [], ["loc", [null, [15, 14], [15, 34]]]]], ["attribute", "onblur", ["subexpr", "action", ["onBlur"], [], ["loc", [null, [16, 13], [16, 32]]]]], ["attribute", "onkeydown", ["subexpr", "action", ["onKeydown"], [], ["loc", [null, [17, 16], [17, 38]]]]], ["attribute", "class", ["concat", ["error-message ", ["subexpr", "unless", [["get", "error.full_message", ["loc", [null, [19, 35], [19, 53]]]], "display-none"], [], ["loc", [null, [19, 26], [19, 70]]]], " ", ["subexpr", "if", [["get", "display_error", ["loc", [null, [19, 76], [19, 89]]]], "error"], [], ["loc", [null, [19, 71], [19, 99]]]]]]], ["content", "error.full_message", ["loc", [null, [20, 2], [20, 24]]]]],
+      statements: [["block", "each", [["get", "inputs", ["loc", [null, [1, 34], [1, 40]]]]], [], 0, null, ["loc", [null, [1, 26], [7, 9]]]], ["attribute", "type", ["get", "type", ["loc", [null, [10, 17], [10, 21]]]]], ["attribute", "value", ["get", "currentInput", ["loc", [null, [14, 14], [14, 26]]]]], ["attribute", "placeholder", ["get", "inputPlaceholder", ["loc", [null, [15, 20], [15, 36]]]]], ["attribute", "oninput", ["subexpr", "action", ["onInput"], [], ["loc", [null, [16, 14], [16, 34]]]]], ["attribute", "onblur", ["subexpr", "action", ["onBlur"], [], ["loc", [null, [17, 13], [17, 32]]]]], ["attribute", "onkeydown", ["subexpr", "action", ["onKeydown"], [], ["loc", [null, [18, 16], [18, 38]]]]], ["attribute", "class", ["concat", ["error-message ", ["subexpr", "unless", [["get", "error.full_message", ["loc", [null, [20, 35], [20, 53]]]], "display-none"], [], ["loc", [null, [20, 26], [20, 70]]]], " ", ["subexpr", "if", [["get", "display_error", ["loc", [null, [20, 76], [20, 89]]]], "error"], [], ["loc", [null, [20, 71], [20, 99]]]]]]], ["content", "error.full_message", ["loc", [null, [21, 2], [21, 24]]]]],
       locals: [],
       templates: [child0]
     };

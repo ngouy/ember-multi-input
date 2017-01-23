@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/multi-input';
 
-const { computed, computed: { alias }, observer, set, A, Component } = Ember;
+const { computed, computed: { alias, empty }, observer, set, A, Component } = Ember;
 
 export default Component.extend({
+
+  classNames: ['multi-input'],
+  classNameBindings: ['emptyGroup:empty'],
 
   layout,
   validation:            false,
@@ -20,13 +23,14 @@ export default Component.extend({
   _current_input:       '',
   _prev_serach_length:  alias('_current_input.length'),
   _inputsNumber:        alias('inputs.length'),
+  emptyGroup:           empty('inputs'),
 
   inputPlaceholder: computed('placeholder', 'alwaysShowPlaceholder', function() {
     return this.get('alwaysShowPlaceholder') ? this.get('placeholder') : (this.get('_inputsNumber') === 0 ? this.get('placeholder') : '');
   }),
 
-  i18nObserver: observer('i18n', function() {
-    this.get('i18n');
+  i18nObserver: observer('i18n.locale', function() {
+    this.get('i18n.locale');
     this.get('errors').each(error => set(error, 'full_message', this._get_message_error(error.label)));
   }),
 
