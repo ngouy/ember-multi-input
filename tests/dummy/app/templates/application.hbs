@@ -13,4 +13,19 @@
   placeholder='placehoder'
   mustValidate=true
 }}
+
+{{multi-input
+  inputs=inputs2
+  validation=(action 'validation')
+  type="email"
+  uniqness=false
+  max=max
+  onEnter=true
+  onSpace=true
+  onAction=false
+  clearOnBlur=false
+  alwaysShowPlaceholder=false
+  placeholder='placehoder'
+  mustValidate=true
+}}
 {{outlet}}

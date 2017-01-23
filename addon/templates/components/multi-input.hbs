@@ -1,8 +1,13 @@
-<div class='inputs-group'>{{#each inputs as |value|}}
+<div class='inputs-group'>{{#each inputs as |input index|}}
   {{#if renderComponent}}
-    {{component renderComponent value}}
+    {{component renderComponent input.value index}}
   {{else}}
-    <div class='input-value'>{{value}}</div>
+    <div class='input-value'>
+      {{#if canDeleteInput}}
+        <span class='delete-input' {{action 'deleteInput' input.id}}>×</span>
+      {{/if}}
+      {{input.value}}
+    </div>
   {{/if}}
 {{/each}}
 </div>

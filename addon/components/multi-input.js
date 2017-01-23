@@ -9,6 +9,7 @@ export default Component.extend({
   classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
   layout,
+  canDeleteInput:        true,
   validation:            false,
   type:                  null,
   uniqness:              true,
@@ -62,13 +63,13 @@ export default Component.extend({
           full_message = 'there are many errors on one or more inputs';
           break;
         case 'already_taken':
-          full_message = 'this input is already used'
+          full_message = 'this input is already used';
           break;
         case 'invalid_format':
-          full_message = 'your input format is not valid'
-          break
+          full_message = 'your input format is not valid';
+          break;
         default:
-          full_message = 'unkonwn error'
+          full_message = 'unkonwn error';
           break;
       }
     }
@@ -105,9 +106,9 @@ export default Component.extend({
         return input;
       } else {
         if (!this.get('inputs')){
-          this.set('inputs', A([input]));
+          this.set('inputs', A([{ id: Symbol(), value: input }]));
         } else {
-          this.get('inputs').pushObject(input);
+          this.get('inputs').pushObject({ id: Symbol(), value: input });
         }
         return null;
       }
@@ -126,10 +127,16 @@ export default Component.extend({
     onInput(onInputEvent) {
       const prev_length = this.get('_prev_serach_length');
       if ((onInputEvent.srcElement.value || '').length > (prev_length + 1)) {
+        this.set('_current_input', onInputEvent.srcElement.value);
         this._try_set_new_inputs(true);
       } else {
         this.set('_current_input', onInputEvent.srcElement.value);
       }
+    },
+
+    deleteInput(id) {
+      const to_remove = this.get('inputs').findBy('id', id);
+      this.get('inputs').removeObject(to_remove);
     },
 
     onBlur() {

@@ -12,9 +12,14 @@
       color: black;
       line-height: 18px;
       font-weight: normal;
+      .delete-input {
+        cursor: pointer;
+        &:not(:hover)opacity: .5;
+      }
     }
   }
   .input-wrapper {
+    input { -webkit-appearance:none; }
     display: inline-block;
   }
 }
