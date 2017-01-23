@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-multi-input/tmp/funnel-input_base_path-0EcFPhAo.tmp/components/app-version.js

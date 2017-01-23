@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-multi-input/tmp/broccoli_merge_trees-input_base_path-lGN6ECuE.tmp/0/modules/ember-cli-app-version/initializer-factory.js

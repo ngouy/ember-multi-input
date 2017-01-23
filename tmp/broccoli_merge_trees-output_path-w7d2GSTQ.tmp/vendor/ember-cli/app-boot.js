@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/config_replace-output_path-3H28bIdk.tmp/app-boot.js

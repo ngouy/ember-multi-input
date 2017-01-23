@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/creator-output_path-tjw1enAH.tmp/version.js

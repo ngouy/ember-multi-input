@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/funnel-input_base_path-bZz2ZjRC.tmp/vendor-suffix.js

@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/broccoli_merge_trees-input_base_path-47RnkjCZ.tmp/1/dummy/templates/application.js

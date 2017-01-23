@@ -1,0 +1,21 @@
+{{#each inputs as |value|}}
+  {{#if renderComponent}}
+    {{component renderComponent value}}
+  {{else}}
+    {{value}}
+  {{/if}}
+{{/each}}
+<div class='input-wrapper'>
+   <input type={{type}} autocomplete="off"
+      autocorrect="off" autocapitalize="off"
+      spellcheck="false" role="combobox"
+      class="multi-input-input"
+      value={{currentInput}}
+      placeholder={{inputPlaceholder}}
+      oninput={{action 'onInput'}}
+      onblur={{action 'onBlur'}}
+      onkeydown={{action 'onKeydown'}} >
+</div>
+<div class='error-message {{unless error.full_message 'display-none'}} {{if display_error 'error'}}'>
+  {{error.full_message}}
+</div>

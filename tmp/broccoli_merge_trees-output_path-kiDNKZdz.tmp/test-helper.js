@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-multi-input/tests/test-helper.js

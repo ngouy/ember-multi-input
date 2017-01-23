@@ -1,0 +1,1 @@
+export { default } from 'ember-button/components/multi-input';

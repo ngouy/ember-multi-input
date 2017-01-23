@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/funnel-input_base_path-7BBxTU69.tmp/components/ember-button.js

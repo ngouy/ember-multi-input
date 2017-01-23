@@ -1,0 +1,1 @@
+/Users/nathangouy/travail/my-ember-components/ember-button/tmp/funnel-input_base_path-U5IWfrJf.tmp/bower_components/ember-cli-test-loader/test-loader.js
