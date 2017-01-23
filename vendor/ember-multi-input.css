@@ -12,5 +12,11 @@
       color: black;
       line-height: 18px;
       font-weight: normal; }
+      .ember-multi-input .inputs-group .input-value .delete-input {
+        cursor: pointer; }
+      .ember-multi-input .inputs-group .input-value .delete-input:not(:hover) {
+        opacity: .5; }
   .ember-multi-input .input-wrapper {
     display: inline-block; }
+    .ember-multi-input .input-wrapper input {
+      -webkit-appearance: none; }
