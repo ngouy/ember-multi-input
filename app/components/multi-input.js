@@ -1,1 +1,1 @@
-export { default } from 'ember-button/components/multi-input';
+export { default } from 'ember-multi-input/components/multi-input';

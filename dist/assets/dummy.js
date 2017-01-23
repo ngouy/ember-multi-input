@@ -32,6 +32,14 @@ define('dummy/components/app-version', ['exports', 'ember-cli-app-version/compon
     name: name
   });
 });
+define('dummy/components/multi-input', ['exports', 'ember-multi-input/components/multi-input'], function (exports, _emberMultiInputComponentsMultiInput) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberMultiInputComponentsMultiInput['default'];
+    }
+  });
+});
 define("dummy/controllers/application", ["exports", "ember"], function (exports, _ember) {
   var Controller = _ember["default"].Controller;
   var computed = _ember["default"].computed;
@@ -51,6 +59,13 @@ define("dummy/controllers/application", ["exports", "ember"], function (exports,
         return null;
       }
     }
+  });
+});
+define('dummy/ember-multi-input/tests/modules/ember-multi-input/components/multi-input.jshint', ['exports'], function (exports) {
+  QUnit.module('JSHint | modules/ember-multi-input/components/multi-input.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(false, 'modules/ember-multi-input/components/multi-input.js should pass jshint.\nmodules/ember-multi-input/components/multi-input.js: line 45, col 54, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 48, col 58, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 49, col 11, Line breaking error \'break\'.\nmodules/ember-multi-input/components/multi-input.js: line 49, col 16, Missing semicolon.\nmodules/ember-multi-input/components/multi-input.js: line 51, col 41, Missing semicolon.\n\n5 errors');
   });
 });
 define('dummy/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pluralize'], function (exports, _emberInflectorLibHelpersPluralize) {
@@ -89,7 +104,7 @@ define('dummy/initializers/data-adapter', ['exports', 'ember'], function (export
   exports['default'] = {
     name: 'data-adapter',
     before: 'store',
-    initialize: _ember['default'].K
+    initialize: function initialize() {}
   };
 });
 define('dummy/initializers/ember-data', ['exports', 'ember-data/setup-container', 'ember-data/-private/core'], function (exports, _emberDataSetupContainer, _emberDataPrivateCore) {
@@ -189,7 +204,7 @@ define('dummy/initializers/injectStore', ['exports', 'ember'], function (exports
   exports['default'] = {
     name: 'injectStore',
     before: 'store',
-    initialize: _ember['default'].K
+    initialize: function initialize() {}
   };
 });
 define('dummy/initializers/store', ['exports', 'ember'], function (exports, _ember) {
@@ -204,7 +219,7 @@ define('dummy/initializers/store', ['exports', 'ember'], function (exports, _emb
   exports['default'] = {
     name: 'store',
     after: 'ember-data',
-    initialize: _ember['default'].K
+    initialize: function initialize() {}
   };
 });
 define('dummy/initializers/transforms', ['exports', 'ember'], function (exports, _ember) {
@@ -219,7 +234,7 @@ define('dummy/initializers/transforms', ['exports', 'ember'], function (exports,
   exports['default'] = {
     name: 'transforms',
     before: 'store',
-    initialize: _ember['default'].K
+    initialize: function initialize() {}
   };
 });
 define("dummy/instance-initializers/ember-data", ["exports", "ember-data/-private/instance-initializers/initialize-store-service"], function (exports, _emberDataPrivateInstanceInitializersInitializeStoreService) {
@@ -265,8 +280,8 @@ define("dummy/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 17,
-            "column": 0
+            "line": 16,
+            "column": 10
           }
         },
         "moduleName": "dummy/templates/application.hbs"
@@ -290,14 +305,13 @@ define("dummy/templates/application", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(2);
         morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         morphs[1] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
       statements: [["inline", "multi-input", [], ["inputs", ["subexpr", "@mut", [["get", "inputs", ["loc", [null, [3, 9], [3, 15]]]]], [], []], "validation", ["subexpr", "action", ["validation"], [], ["loc", [null, [4, 13], [4, 34]]]], "type", "email", "uniqness", true, "max", ["subexpr", "@mut", [["get", "max", ["loc", [null, [7, 6], [7, 9]]]]], [], []], "onEnter", true, "onSpace", true, "onAction", false, "clearOnBlur", false, "alwaysShowPlaceholder", false, "placeholder", "placehoder", "mustValidate", true], ["loc", [null, [2, 0], [15, 2]]]], ["content", "outlet", ["loc", [null, [16, 0], [16, 10]]]]],
@@ -338,7 +352,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-multi-input","version":"0.0.1+"});
+  require("dummy/app")["default"].create({"name":"ember-multi-input","version":"0.0.0+0de20f71"});
 }
 
 /* jshint ignore:end */

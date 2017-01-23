@@ -1,4 +1,4 @@
-# Ember-button
+# Ember-multi-input
 
 >**note**<br>
 >this is my first addon
