@@ -1,1 +1,0 @@
-/Users/nathangouy/travail/my-ember-components/ember-button/tmp/funnel-input_base_path-MdqOkOMX.tmp/utils/class-factory.js

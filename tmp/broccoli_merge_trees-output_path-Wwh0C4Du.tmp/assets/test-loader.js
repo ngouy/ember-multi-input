@@ -1,1 +1,0 @@
-/Users/nathangouy/travail/my-ember-components/ember-button/bower_components/ember-cli-test-loader/test-loader.js

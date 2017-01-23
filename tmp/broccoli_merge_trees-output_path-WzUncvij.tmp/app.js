@@ -1,1 +1,0 @@
-/Users/nathangouy/travail/my-ember-components/ember-button/tests/dummy/app/app.js

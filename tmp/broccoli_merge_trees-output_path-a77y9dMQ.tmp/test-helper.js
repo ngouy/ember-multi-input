@@ -1,1 +1,0 @@
-/Users/nathangouy/travail/my-ember-components/ember-button/tests/test-helper.js
