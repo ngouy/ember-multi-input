@@ -9,7 +9,7 @@ export default Component.extend({
   classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
   layout,
-  inputs:                A([]),
+  inputs:                computed(() => A([])),
   canDeleteInput:        true,
   validation:            false,
   type:                  null,
@@ -28,18 +28,13 @@ export default Component.extend({
   _inputsNumber:        alias('inputs.length'),
   emptyGroup:           empty('inputs'),
 
-  init() {
-    debugger;
-    this._super(...arguments);
-  },
-
   inputGroup: computed('inputs.[]', {
     get() {
       return this.get('inputs').mapBy('value');
     },
-    set(_, values) {
-      if (values) {
-        values.forEach(value => {
+    set(_, new_values, old_values) {
+      if (new_values && new_values !== old_values) {
+        new_values.forEach(value => {
           this.get('inputs').addObject({ id: Symbol(), value: value });
         });
       }

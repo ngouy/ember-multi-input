@@ -10,9 +10,6 @@
     </div>
   {{/if}}
 {{/each}}
-{{#each inputGroup as |value|}}
-  {{value}}
-{{/each}}
 <div class='input-wrapper'>
    <input type={{type}} autocomplete="off"
       autocorrect="off" autocapitalize="off"
@@ -24,7 +21,6 @@
       onblur={{action 'onBlur'}}
       onkeydown={{action 'onKeydown'}} >
 </div>
-{{inputPlaceholder}}
 {{#if _error.full_message}}
   <div class='error-message {{if _live_error 'live-error' 'min-error'}}'>
     {{_error.full_message}}
