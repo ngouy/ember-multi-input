@@ -352,7 +352,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-multi-input","version":"0.0.2+fe23f53a"});
+  require("dummy/app")["default"].create({"name":"ember-multi-input","version":"v0.0.7"});
 }
 
 /* jshint ignore:end */
