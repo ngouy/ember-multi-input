@@ -87109,7 +87109,10 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
             var el0 = dom.createDocumentFragment();
             var el1 = dom.createTextNode("    ");
             dom.appendChild(el0, el1);
-            var el1 = dom.createComment("");
+            var el1 = dom.createElement("div");
+            dom.setAttribute(el1, "class", "input-value");
+            var el2 = dom.createComment("");
+            dom.appendChild(el1, el2);
             dom.appendChild(el0, el1);
             var el1 = dom.createTextNode("\n");
             dom.appendChild(el0, el1);
@@ -87117,10 +87120,10 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
             var morphs = new Array(1);
-            morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+            morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
             return morphs;
           },
-          statements: [["content", "value", ["loc", [null, [5, 4], [5, 13]]]]],
+          statements: [["content", "value", ["loc", [null, [5, 29], [5, 38]]]]],
           locals: [],
           templates: []
         };
