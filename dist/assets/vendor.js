@@ -86898,7 +86898,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
 
   exports['default'] = Component.extend({
 
-    classNames: ['multi-input'],
+    classNames: ['ember-multi-input'],
     classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
     layout: _emberMultiInputTemplatesComponentsMultiInput['default'],
@@ -86924,17 +86924,17 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
 
     i18nObserver: observer('i18n.locale', function () {
       this.get('i18n.locale');
-      var error = this.get('error');
+      var error = this.get('_error');
       set(error, 'full_message', this._get_message_error(error.label));
     }),
 
     /* observes the input value and display error if there is one */
-    inputObserver: observer('error.value', '_current_input', function () {
-      var current_input = this.get('current_input');
+    inputObserver: observer('_error.value', '_current_input', function () {
+      var current_input = this.get('_current_input');
       if (current_input === "" || !current_input) {
-        this.set('error', null);
+        this.set('_error', null);
       }
-      var error_value = this.get('error.value');
+      var error_value = this.get('_error.value');
       if (error_value) {
         this.set('_live_error', error_value === current_input);
       } else {
@@ -86970,7 +86970,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     _display_error: function _display_error(label, value) {
       this.set('_live_error', true);
       var full_message = this._get_message_error(label);
-      this.set('error', {
+      this.set('_error', {
         label: label,
         value: value,
         full_message: full_message
@@ -87019,7 +87019,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
       if (errors.length > 0) {
         this._display_error(errors.length > 1 ? 'many_errors' : this.get('validation')(errors[0]) ? 'invalid_format' : 'already_taken', error_input);
       } else {
-        this.set('error', null);
+        this.set('_error', null);
         this._set_input_value("");
       }
     },
@@ -87179,11 +87179,60 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         templates: [child0, child1]
       };
     })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.5.1",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 20,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 0
+            }
+          },
+          "moduleName": "modules/ember-multi-input/templates/components/multi-input.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1, "class", "error-message");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
+          return morphs;
+        },
+        statements: [["content", "_error.full_message", ["loc", [null, [22, 4], [22, 27]]]]],
+        locals: [],
+        templates: []
+      };
+    })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["multiple-nodes"]
+          "problems": ["multiple-nodes", "wrong-type"]
         },
         "revision": "Ember@2.5.1",
         "loc": {
@@ -87193,8 +87242,8 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
             "column": 0
           },
           "end": {
-            "line": 22,
-            "column": 6
+            "line": 24,
+            "column": 7
           }
         },
         "moduleName": "modules/ember-multi-input/templates/components/multi-input.hbs"
@@ -87229,20 +87278,13 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        var el2 = dom.createTextNode("\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
+        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [2, 1]);
-        var element1 = dom.childAt(fragment, [4]);
-        var morphs = new Array(9);
+        var morphs = new Array(8);
         morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]), 0, 0);
         morphs[1] = dom.createAttrMorph(element0, 'type');
         morphs[2] = dom.createAttrMorph(element0, 'value');
@@ -87250,13 +87292,13 @@ define("ember-multi-input/templates/components/multi-input", ["exports"], functi
         morphs[4] = dom.createAttrMorph(element0, 'oninput');
         morphs[5] = dom.createAttrMorph(element0, 'onblur');
         morphs[6] = dom.createAttrMorph(element0, 'onkeydown');
-        morphs[7] = dom.createAttrMorph(element1, 'class');
-        morphs[8] = dom.createMorphAt(element1, 1, 1);
+        morphs[7] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        dom.insertBoundary(fragment, null);
         return morphs;
       },
-      statements: [["block", "each", [["get", "inputs", ["loc", [null, [1, 34], [1, 40]]]]], [], 0, null, ["loc", [null, [1, 26], [7, 9]]]], ["attribute", "type", ["get", "type", ["loc", [null, [10, 17], [10, 21]]]]], ["attribute", "value", ["get", "currentInput", ["loc", [null, [14, 14], [14, 26]]]]], ["attribute", "placeholder", ["get", "inputPlaceholder", ["loc", [null, [15, 20], [15, 36]]]]], ["attribute", "oninput", ["subexpr", "action", ["onInput"], [], ["loc", [null, [16, 14], [16, 34]]]]], ["attribute", "onblur", ["subexpr", "action", ["onBlur"], [], ["loc", [null, [17, 13], [17, 32]]]]], ["attribute", "onkeydown", ["subexpr", "action", ["onKeydown"], [], ["loc", [null, [18, 16], [18, 38]]]]], ["attribute", "class", ["concat", ["error-message ", ["subexpr", "unless", [["get", "error.full_message", ["loc", [null, [20, 35], [20, 53]]]], "display-none"], [], ["loc", [null, [20, 26], [20, 70]]]], " ", ["subexpr", "if", [["get", "display_error", ["loc", [null, [20, 76], [20, 89]]]], "error"], [], ["loc", [null, [20, 71], [20, 99]]]]]]], ["content", "error.full_message", ["loc", [null, [21, 2], [21, 24]]]]],
+      statements: [["block", "each", [["get", "inputs", ["loc", [null, [1, 34], [1, 40]]]]], [], 0, null, ["loc", [null, [1, 26], [7, 9]]]], ["attribute", "type", ["get", "type", ["loc", [null, [10, 17], [10, 21]]]]], ["attribute", "value", ["get", "currentInput", ["loc", [null, [14, 14], [14, 26]]]]], ["attribute", "placeholder", ["get", "inputPlaceholder", ["loc", [null, [15, 20], [15, 36]]]]], ["attribute", "oninput", ["subexpr", "action", ["onInput"], [], ["loc", [null, [16, 14], [16, 34]]]]], ["attribute", "onblur", ["subexpr", "action", ["onBlur"], [], ["loc", [null, [17, 13], [17, 32]]]]], ["attribute", "onkeydown", ["subexpr", "action", ["onKeydown"], [], ["loc", [null, [18, 16], [18, 38]]]]], ["block", "if", [["get", "_error.full_message", ["loc", [null, [20, 6], [20, 25]]]]], [], 1, null, ["loc", [null, [20, 0], [24, 7]]]]],
       locals: [],
-      templates: [child0]
+      templates: [child0, child1]
     };
   })());
 });

@@ -17,6 +17,8 @@
       onblur={{action 'onBlur'}}
       onkeydown={{action 'onKeydown'}} >
 </div>
-<div class='error-message {{unless error.full_message 'display-none'}} {{if display_error 'error'}}'>
-  {{error.full_message}}
-</div>
+{{#if _error.full_message}}
+  <div class='error-message'>
+    {{_error.full_message}}
+  </div>
+{{/if}}

@@ -5,7 +5,7 @@ const { computed, computed: { alias, empty }, observer, set, A, Component } = Em
 
 export default Component.extend({
 
-  classNames: ['multi-input'],
+  classNames: ['ember-multi-input'],
   classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
   layout,
@@ -31,17 +31,17 @@ export default Component.extend({
 
   i18nObserver: observer('i18n.locale', function() {
     this.get('i18n.locale');
-    const error = this.get('error');
+    const error = this.get('_error');
     set(error, 'full_message', this._get_message_error(error.label));
   }),
 
   /* observes the input value and display error if there is one */
-  inputObserver: observer('error.value', '_current_input', function() {
-    const current_input = this.get('current_input');
+  inputObserver: observer('_error.value', '_current_input', function() {
+    const current_input = this.get('_current_input');
     if (current_input === "" || !current_input) {
-      this.set('error', null);
+      this.set('_error', null);
     }
-    const error_value = this.get('error.value');
+    const error_value = this.get('_error.value');
     if (error_value) {
       this.set('_live_error', error_value === current_input);
     } else {
@@ -78,7 +78,7 @@ export default Component.extend({
   _display_error(label, value) {
     this.set('_live_error', true);
     const full_message = this._get_message_error(label);
-    this.set('error', {
+    this.set('_error', {
       label,
       value,
       full_message
@@ -117,7 +117,7 @@ export default Component.extend({
     if (errors.length > 0) {
       this._display_error(errors.length > 1 ? 'many_errors' : (this.get('validation')(errors[0]) ? 'invalid_format' : 'already_taken'), error_input);
     } else {
-      this.set('error', null);
+      this.set('_error', null);
       this._set_input_value("");
     }
   },
