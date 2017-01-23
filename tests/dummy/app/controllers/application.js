@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
-const { Controller } = Ember;
+const { A, Controller } = Ember;
 
 export default Controller.extend({
+
+  inputs3: A(['test@test.com']),
+  inputs2: A(),
 
   validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

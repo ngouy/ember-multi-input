@@ -9,6 +9,7 @@ export default Component.extend({
   classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
 
   layout,
+  inputs:                A([]),
   canDeleteInput:        true,
   validation:            false,
   type:                  null,
@@ -21,12 +22,32 @@ export default Component.extend({
   alwaysShowPlaceholder: false,
   mustValidate:          false,
 
+
   _current_input:       '',
   _prev_serach_length:  alias('_current_input.length'),
   _inputsNumber:        alias('inputs.length'),
   emptyGroup:           empty('inputs'),
 
-  inputPlaceholder: computed('placeholder', 'alwaysShowPlaceholder', function() {
+  init() {
+    debugger;
+    this._super(...arguments);
+  },
+
+  inputGroup: computed('inputs.[]', {
+    get() {
+      return this.get('inputs').mapBy('value');
+    },
+    set(_, values) {
+      if (values) {
+        values.forEach(value => {
+          this.get('inputs').addObject({ id: Symbol(), value: value });
+        });
+      }
+      return this.get('inputs').mapBy('value');
+    },
+  }),
+
+  inputPlaceholder: computed('placeholder', '_inputsNumber', 'alwaysShowPlaceholder', function() {
     return this.get('alwaysShowPlaceholder') ? this.get('placeholder') : (this.get('_inputsNumber') === 0 ? this.get('placeholder') : '');
   }),
 
@@ -105,11 +126,7 @@ export default Component.extend({
       if (this.get('mustValidate') && this.get('validation')(input) || (this.get('uniqness') && (this.get('inputs') || []).includes(input))) {
         return input;
       } else {
-        if (!this.get('inputs')){
-          this.set('inputs', A([{ id: Symbol(), value: input }]));
-        } else {
-          this.get('inputs').pushObject({ id: Symbol(), value: input });
-        }
+        this.get('inputs').addObject({ id: Symbol(), value: input });
         return null;
       }
     }).filter(a => a);
