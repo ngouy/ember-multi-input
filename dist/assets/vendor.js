@@ -86926,7 +86926,7 @@ define('ember-multi-input/components/multi-input', ['exports', 'ember', 'ember-m
     }),
 
     _get_message_error: function _get_message_error(label) {
-      var error_path = this.get('error_path'),
+      var error_path = this.get('errorPath'),
           i18n = this.get('i18n');
       var full_message = undefined;
       if (i18n) {

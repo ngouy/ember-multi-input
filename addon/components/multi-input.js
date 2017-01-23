@@ -31,7 +31,7 @@ export default Component.extend({
   }),
 
   _get_message_error(label) {
-    const error_path = this.get('error_path'),
+    const error_path = this.get('errorPath'),
           i18n       = this.get('i18n');
     let full_message;
     if (i18n) {
