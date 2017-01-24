@@ -128,7 +128,7 @@ export default Component.extend({
     const error_input = errors.join(" ");
     if (error_input !== values.join(" ")) { this._set_input_value(error_input); }
     if (errors.length > 0) {
-      this._display_error(errors.length > 1 ? 'many_errors' : (this.get('validation')(errors[0]) ? 'invalid_format' : 'already_taken'), error_input);
+      this._display_error(errors.length > 1 ? 'many_errors' : (this.get('validation')(errors[0]) || 'already_taken'), error_input);
     } else {
       this.set('_error', null);
       this._set_input_value("");
