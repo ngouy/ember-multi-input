@@ -13,8 +13,8 @@ Easy to use on it's simpliest form, it can be used with some other params to cus
 
 * `ember install ember-multi-input`<br>
 
->**if you want to save it into your current ember project run**
->ember install ember-multi-input --save-dev
+>**if you want to save it into your current ember project run**<br>
+>`ember install ember-multi-input --save-dev`
 
 ## Using
 <h4> minal
