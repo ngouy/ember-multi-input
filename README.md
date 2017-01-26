@@ -11,7 +11,7 @@ Easy to use on it's simpliest form, it can be used with some other params to cus
 
 ## Installation
 
-* `ember install ember-multi-input`
+* `ember install ember-multi-input`<br>
 >if you want to save it into your current ember project run<br>
 >`ember install ember-multi-input --save-dev`
 
