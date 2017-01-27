@@ -18,13 +18,13 @@ Currently works on ember 2.x, not tested yet on ember 1.13
 >`npm install ember-multi-input --save-dev`
 
 ## Using
-<h4> minal
+<h4> minal</h4>
 ```htmlbars
 {{multi-input
   inputGroup=values
 }}
 ```
-<h4> avanced using
+<h4> avanced using</4>
 ```htmlbars
 {{multi-input
   inputGroup=values
@@ -41,7 +41,8 @@ Currently works on ember 2.x, not tested yet on ember 1.13
 }}
 ```
 
-
+![alt tag](https://github.com/ngouy/images/blob/master/images_for_readme_repos/ember-multi-input/Screen%20Shot%202017-01-27%20at%2011.46.23.png?raw=true)
+![alt tag](https://github.com/ngouy/images/blob/master/images_for_readme_repos/ember-multi-input/Screen%20Shot%202017-01-27%20at%2011.49.35.png?raw=true)
 
 ## The following outlines the details of collaborating on this Ember addon.
 ## Installation
