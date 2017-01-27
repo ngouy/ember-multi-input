@@ -1,4 +1,4 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Ember-multi-input</h2>
 {{multi-input
   inputGroup=inputs3
   validation=(action 'validation')
@@ -13,31 +13,3 @@
   placeholder='placehoder1'
   mustValidate=true
 }}
-
-{{multi-input
-  inputGroup=inputs2
-  validation=(action 'validation')
-  type="email"
-  uniqness=false
-  max=max
-  onEnter=true
-  onSpace=true
-  onAction=false
-  clearOnBlur=false
-  alwaysShowPlaceholder=true
-  placeholder='placehoder2'
-  mustValidate=true
-}}
-
-inputs>>
-{{#each inputs3 as |value|}}
-  {{value}}
-{{/each}}
-
-<br>
-
-inputs2>>
-{{#each inputs2 as |value|}}
-  {{value}}
-{{/each}}
-{{outlet}}

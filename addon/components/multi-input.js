@@ -81,7 +81,7 @@ export default Component.extend({
           full_message = 'there are many errors on one or more inputs';
           break;
         case 'already_taken':
-          full_message = 'this input is already used';
+          full_message = 'this value is already used';
           break;
         case 'invalid_format':
           full_message = 'your input format is not valid';
@@ -120,7 +120,9 @@ export default Component.extend({
       return;
     }
     let errors = values.map(input => {
-      if (this.get('mustValidate') && this.get('validation')(input) || (this.get('uniqness') && (this.get('inputs') || []).includes(input))) {
+      debugger;
+      if ((this.get('mustValidate') && this.get('validation')(input)) ||
+          (this.get('uniqness') && (this.get('inputs') || A([])).filterBy('value', input)[0])) {
         return input;
       } else {
         this.get('inputs').addObject({ id: Symbol(), value: input });
