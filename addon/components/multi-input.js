@@ -1,12 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/multi-input';
 
-const { computed, computed: { alias, empty }, observer, set, A, Component } = Ember;
+const { computed, computed: { alias, and, empty, notEmpty }, observer, set, A, Component } = Ember;
 
 export default Component.extend({
 
   classNames: ['ember-multi-input'],
-  classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error'],
+  classNameBindings: ['emptyGroup:empty', '_live_error:live-error:min-error', 'hasError'],
 
   layout,
   inputs:                computed(() => A([])),
@@ -21,12 +21,14 @@ export default Component.extend({
   clearOnBlur:           false,
   alwaysShowPlaceholder: false,
   mustValidate:          false,
-
+  crossOnError:          true,
 
   _current_input:       '',
   _prev_serach_length:  alias('_current_input.length'),
   _inputsNumber:        alias('inputs.length'),
   emptyGroup:           empty('inputs'),
+  showErrorCross:       and('crossOnError', '_error.full_message'),
+  hasError:             notEmpty('_error.full_message'),
 
   inputGroup: computed('inputs.[]', {
     get() {
