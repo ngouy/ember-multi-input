@@ -8,6 +8,7 @@
 
 ember-multi-input provides a simple helper which gives you a simple way to have a group of editable inputs such as a your list of emails when you send an email from your sending box
 Easy to use on it's simpliest form, it can be used with some other params to custom thoose with validation, conditions, with simple errors  etc...
+Currently works on ember 2.x, not tested yet on ember 1.13
 
 ## Installation
 
