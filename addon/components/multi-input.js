@@ -2,6 +2,8 @@ import Ember from 'ember';
 import layout from '../templates/components/multi-input';
 /* global _ */
 
+const { isEqual } = _;
+
 const { computed, computed: { alias, and, empty, notEmpty }, observer, set, A, Component } = Ember;
 
 export default Component.extend({
@@ -36,7 +38,7 @@ export default Component.extend({
       return this.get('inputs').mapBy('value');
     },
     set(_, new_values, old_values) {
-      if (new_values && !_.isEqual(new_values, old_values)) {
+      if (new_values && !isEqual(new_values, old_values)) {
         new_values.forEach(value => {
           this.get('inputs').addObject({ id: Symbol(), value: value });
         });
