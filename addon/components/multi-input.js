@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/multi-input';
+/* global _ */
 
 const { computed, computed: { alias, and, empty, notEmpty }, observer, set, A, Component } = Ember;
 
@@ -35,7 +36,7 @@ export default Component.extend({
       return this.get('inputs').mapBy('value');
     },
     set(_, new_values, old_values) {
-      if (new_values && new_values !== old_values) {
+      if (new_values && !_.isEqual(new_values, old_values)) {
         new_values.forEach(value => {
           this.get('inputs').addObject({ id: Symbol(), value: value });
         });
@@ -51,7 +52,7 @@ export default Component.extend({
   i18nObserver: observer('i18n.locale', function() {
     this.get('i18n.locale');
     const error = this.get('_error');
-    set(error, 'full_message', this._get_message_error(error.label));
+    if (error) { set(error, 'full_message', this._get_message_error(error.label)); }
   }),
 
   /* observes the input value and display error if there is one */
