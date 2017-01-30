@@ -120,7 +120,6 @@ export default Component.extend({
       return;
     }
     let errors = values.map(input => {
-      debugger;
       if ((this.get('mustValidate') && this.get('validation')(input)) ||
           (this.get('uniqness') && (this.get('inputs') || A([])).filterBy('value', input)[0])) {
         return input;

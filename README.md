@@ -24,7 +24,7 @@ Currently works on ember 2.x, not tested yet on ember 1.13
   inputGroup=values
 }}
 ```
-<h4> avanced using</4>
+<h4> avanced using</h4>
 ```htmlbars
 {{multi-input
   inputGroup=values
