@@ -1,34 +1,45 @@
-{{#each inputs as |input index|}}
-  {{#if renderComponent}}
-    {{component renderComponent input.value index}}
-  {{else}}
-    <div class='input-value' {{action 'editInput' input.id}}>
-      {{#if canDeleteInput}}
-        <span class='delete-input' {{action 'deleteInput' input.id}}>×</span>
+<div class='inputs'>
+  {{#each inputs as |input index|}}
+    {{#if renderComponent}}
+      {{component renderComponent input.value index}}
+    {{else}}
+      <div class='input-value' {{action 'editInput' input.id}}>
+        {{#if canDeleteInput}}
+          <span class='delete-input' {{action 'deleteInput' input.id}}>×</span>
+        {{/if}}
+        {{input.value}}
+      </div>
+    {{/if}}
+  {{/each}}
+  <div class='input-wrapper'>
+    <input type={{type}} autocomplete="off"
+        autocorrect="off" autocapitalize="off"
+        spellcheck="false" role="combobox"
+        class="multi-input-input"
+        value={{currentInput}}
+        placeholder={{inputPlaceholder}}
+        oninput={{action 'onInput'}}
+        onblur={{action 'onBlur'}}
+        onkeydown={{action 'onKeydown'}} >
+      {{#if showErrorCross}}
+        <svg class="svg-icon-cross " viewBox="0 0 32 32">
+          <polygon points="24.485,27.314 27.314,24.485 18.828,16 27.314,7.515 24.485,4.686 16,13.172 7.515,4.686 4.686,7.515 13.172,16 4.686,24.485 7.515,27.314 16,18.828 ">
+          </polygon>
+        </svg>
       {{/if}}
-      {{input.value}}
+  </div>
+  {{#if errorInInput}}
+    {{#if _error.full_message}}
+      <div class='error-message {{if _live_error 'live-error' 'min-error'}}'>
+        {{_error.full_message}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>
+{{#unless errorInInput}}
+  {{#if _error.full_message}}
+    <div class='error-message {{if _live_error 'live-error' 'min-error'}}'>
+      {{_error.full_message}}
     </div>
   {{/if}}
-{{/each}}
-<div class='input-wrapper'>
-   <input type={{type}} autocomplete="off"
-      autocorrect="off" autocapitalize="off"
-      spellcheck="false" role="combobox"
-      class="multi-input-input"
-      value={{currentInput}}
-      placeholder={{inputPlaceholder}}
-      oninput={{action 'onInput'}}
-      onblur={{action 'onBlur'}}
-      onkeydown={{action 'onKeydown'}} >
-    {{#if showErrorCross}}
-      <svg class="svg-icon-cross " viewBox="0 0 32 32">
-        <polygon points="24.485,27.314 27.314,24.485 18.828,16 27.314,7.515 24.485,4.686 16,13.172 7.515,4.686 4.686,7.515 13.172,16 4.686,24.485 7.515,27.314 16,18.828 ">
-        </polygon>
-      </svg>
-    {{/if}}
-</div>
-{{#if _error.full_message}}
-  <div class='error-message {{if _live_error 'live-error' 'min-error'}}'>
-    {{_error.full_message}}
-  </div>
-{{/if}}
+{{/unless}}
