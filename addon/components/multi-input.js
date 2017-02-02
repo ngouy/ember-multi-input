@@ -71,6 +71,11 @@ export default Component.extend({
     }
   }),
 
+  click() {
+    const $input = this.$('input');
+    if ($input) { $input.focus(); }
+  },
+
 
   _get_message_error(label) {
     const error_path = this.get('errorPath'),
