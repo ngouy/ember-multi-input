@@ -19,13 +19,13 @@ Currently works on ember 2.x, not tested yet on ember 1.13
 
 ## Using
 <h4> minal</h4>
-```htmlbars
+```hbs
 {{multi-input
   inputGroup=values
 }}
 ```
 <h4> avanced using</h4>
-```htmlbars
+```hbs
   {{multi-input
     inputGroup=values
     validation=(action 'validationAction')
