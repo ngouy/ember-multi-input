@@ -25,6 +25,7 @@ export default Component.extend({
   alwaysShowPlaceholder: false,
   mustValidate:          false,
   crossOnError:          true,
+  valuesContainsSpaces:  false,
 
   _current_input:       '',
   _prev_serach_length:  alias('_current_input.length'),
@@ -118,8 +119,11 @@ export default Component.extend({
   },
 
   _extract_values_from_input() {
-    let value = this.$('input')[0].value;
-    return value.split(' ').filter(a => a.trim().length > 0);
+    let value = this.$('input')[0].value.trim();
+    if (!this.get('valuesContainsSpaces')) {
+      return value.split(' ').filter(a => a.trim().length > 0);
+    }
+    return value.length > 0 ? [value] : [];
   },
 
   _try_set_new_inputs(fromPaste = false) {
