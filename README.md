@@ -19,27 +19,30 @@ Currently works on ember 2.x, not tested yet on ember 1.13
 
 ## Using
 <h4> minal</h4>
+
 ```hbs
 {{multi-input
   inputGroup=values
 }}
 ```
+
 <h4> avanced using</h4>
+
 ```hbs
-  {{multi-input
-    inputGroup=values
-    validation=(action 'validationAction')
-    type='email'
-    uniqness=false
-    max=30
-    onEnter=true
-    onSpace=false
-    clearOnBlur=false
-    alwaysShowPlaceholder=true
-    placeholder='email'
-    mustValidate=true
-    valuesContainsSpaces=false
-  }}
+{{multi-input
+  inputGroup=values
+  validation=(action 'validationAction')
+  type='email'
+  uniqness=false
+  max=30
+  onEnter=true
+  onSpace=false
+  clearOnBlur=false
+  alwaysShowPlaceholder=true
+  placeholder='email'
+  mustValidate=true
+  valuesContainsSpaces=false
+}}
 ```
 
 ![alt tag](https://github.com/ngouy/images/blob/master/images_for_readme_repos/ember-multi-input/Screen%20Shot%202017-01-27%20at%2011.46.23.png?raw=true)
